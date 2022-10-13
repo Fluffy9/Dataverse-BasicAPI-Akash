@@ -1,0 +1,39 @@
+version: "2.0"
+services:
+  dv-server:
+    env:
+    - PK=YourPrivateKey
+    image: pupcakes/dv-server-akash:latest
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    dv-server:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    dv-server:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        dv-server:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  dv-server:
+    dv-server:
+      profile: dv-server
+      count: 1
