@@ -19,3 +19,11 @@ Source code of the BasicAPI feed from [Dataverse](https://github.com/Fluffy9/Dat
 ```
 
 The registry contract needs to be informed of your provider before it can be used. Using the private key from your deploy.yaml file, call `setOracle(true)` function on the [registry contract](https://github.com/Fluffy9/Dataverse/wiki/Contract-Addresses). 
+
+# Near Instructions
+
+Put your private key in the basicAPINear.js file. DO NOT push to dockerhub and DO NOT deploy to Akash network. 
+
+Run locally or on a secure server with command `docker build -f Dockerfile.near . -t basic-near-api` to build and `docker run -d --name basic-api-near --restart always basic-api-near`
+
+It's important to include the --restart flag because this will ensure the whole thing is restarted in the case of the websocket connection closing or any errors
