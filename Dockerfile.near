@@ -1,0 +1,7 @@
+FROM node:14-alpine3.11
+RUN mkdir /app && cd /app
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . /app 
+ENTRYPOINT [ "node", "basicAPINear.js"]
